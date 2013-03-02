@@ -49,10 +49,13 @@ class WP_Stack_CDN_Domain_Field {
 
 	function register_fields() {
 		
-		register_setting( 'general', 'wp_stack_cdn_domain', 'esc_attr' );
+		if ( is_super_admin() ) {
+		
+			register_setting( 'general', 'wp_stack_cdn_domain', 'esc_attr' );
 	
-		add_settings_field('wp_stack_cdn_domain', '<label for="wp_stack_cdn_domain">'.__('CDN Domain' , 'wp_stack_cdn_domain' ).'</label>' , array(&$this, 'fields_html') , 'general' );
-	
+			add_settings_field('wp_stack_cdn_domain', '<label for="wp_stack_cdn_domain">'.__('CDN Domain' , 'wp_stack_cdn_domain' ).'</label>' , array(&$this, 'fields_html') , 'general' );
+		
+		}	
 	}
 
 	function fields_html() {
